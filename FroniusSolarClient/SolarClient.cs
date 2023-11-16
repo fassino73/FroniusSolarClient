@@ -63,7 +63,7 @@ namespace FroniusSolarClient
         /// <returns></returns>
         public Response<P3InverterData> GetP3InverterData(int deviceId = 1, Scope scope = Scope.Device)
         {
-            return _inverterRealtimeDataService.GetP3InverterData(deviceId, scope);
+            return _inverterRealtimeDataService.Get3PInverterData(deviceId, scope);
         }
 
         /// <summary>

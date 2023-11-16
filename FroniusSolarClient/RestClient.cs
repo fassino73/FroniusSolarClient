@@ -35,7 +35,7 @@ namespace FroniusSolarClient
             var requestMessage = new HttpRequestMessage();
             requestMessage.RequestUri = new Uri($"{_url}{cgi}");
             requestMessage.Method = HttpMethod.Get;
-            _logger.LogInformation($"RequestUri: {requestMessage.RequestUri}");
+            _logger.LogDebug($"RequestUri: {requestMessage.RequestUri}");
             return requestMessage;
         }
 
@@ -57,7 +57,7 @@ namespace FroniusSolarClient
                 httpResponse.EnsureSuccessStatusCode();
 
                 var content = httpResponse.Content.ReadAsStringAsync().Result;
-                _logger.LogInformation($"Response Code: {httpResponse.StatusCode.ToString()}");
+                _logger.LogDebug($"Response Code: {httpResponse.StatusCode.ToString()}");
                 _logger.LogDebug($"Content: {content}");
 
                 var response = JsonHelper.DeSerializeResponse<Response<T>>(content);
