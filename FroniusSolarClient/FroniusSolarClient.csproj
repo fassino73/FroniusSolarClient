@@ -8,7 +8,7 @@
     <RepositoryUrl>https://github.com/SeanoNET/FroniusSolarClient</RepositoryUrl>
     <PackageTags>fronius-solar-api; api; fronius-inverter;</PackageTags>
     <Authors>Sean O.</Authors>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <LangVersion>7.3</LangVersion>
     <PackageProjectUrl>https://github.com/SeanoNET/FroniusSolarClient</PackageProjectUrl>
     <RepositoryType>git</RepositoryType>
