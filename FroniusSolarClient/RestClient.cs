@@ -44,31 +44,22 @@ namespace FroniusSolarClient
             return _httpClient.SendAsync(requestMessage).Result;
         }
 
- 
-        public  Response<T> GetResponse<T>(string endpoint)
+
+        public Response<T> GetResponse<T>(string endpoint)
         {
-            try
-            {
+            var httpRequest = PrepareHTTPMessage(endpoint);
 
-                var httpRequest = PrepareHTTPMessage(endpoint);
+            var httpResponse = ExecuteRequest(httpRequest);
 
-                var httpResponse = ExecuteRequest(httpRequest);
+            httpResponse.EnsureSuccessStatusCode();
 
-                httpResponse.EnsureSuccessStatusCode();
+            var content = httpResponse.Content.ReadAsStringAsync().Result;
+            _logger.LogDebug($"Response Code: {httpResponse.StatusCode.ToString()}");
+            _logger.LogDebug($"Content: {content}");
 
-                var content = httpResponse.Content.ReadAsStringAsync().Result;
-                _logger.LogDebug($"Response Code: {httpResponse.StatusCode.ToString()}");
-                _logger.LogDebug($"Content: {content}");
+            var response = JsonHelper.DeSerializeResponse<Response<T>>(content);
 
-                var response = JsonHelper.DeSerializeResponse<Response<T>>(content);
-
-                return response;
-            }
-            catch (System.Exception ex)
-            {
-                _logger.LogError($"An error occured: {ex.Message}");
-                return null;
-            }
+            return response;
         }
      
 
